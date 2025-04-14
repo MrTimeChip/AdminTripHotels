@@ -1,8 +1,9 @@
 using AdminTripHotels.WebApi.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AdminTripHotels.WebApi.Controllers;
 
 public interface IOfferController
 {
-	public IEnumerable<OfferDTO> GetOffers();
+	public Task<IActionResult> GetOffers(string hotelCode);
 }

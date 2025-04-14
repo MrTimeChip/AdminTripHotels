@@ -19,9 +19,10 @@ public class OffersController : IOfferController
 	}
 
 	[HttpGet]
-	public IEnumerable<OfferDTO> GetOffers()
+	[Route("hotels/{hotelCode}/offers")]
+	public Task<IActionResult> GetOffers([FromRoute] string hotelCode)
 	{
-		var offers = offerService.GetAll().ToList();
-		return mapper.Map<IEnumerable<OfferDTO>>(offers);
+		var offers = offerService.GetFromHotelCode(hotelCode);
+		return offers is null ? NotFound() : Ok(mapper.Map<IEnumerable<OfferDTO>>(offers));
 	}
 }
