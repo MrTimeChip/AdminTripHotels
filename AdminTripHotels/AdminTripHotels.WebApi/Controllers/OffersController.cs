@@ -1,3 +1,4 @@
+using AdminTripHotels.Core.Domain;
 using AdminTripHotels.Core.Services;
 using AdminTripHotels.WebApi.DTO;
 using AutoMapper;
@@ -31,6 +32,7 @@ public class OffersController : ControllerBase
 	[Produces("application/json")]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
 	public IActionResult GetOfferByHotelIdAndId([FromRoute]string hotelCode, [FromRoute]Guid offerId)
 	{
 		logger.LogInformation($"Получение предложения по ID:{offerId} для отеля:{hotelCode}");
@@ -49,12 +51,21 @@ public class OffersController : ControllerBase
 		}
 	}
 
-	public IActionResult CreateOffer([FromBody] CreateOfferDTO offer)
+	[HttpPost("hotels/{hotelCode}/offers")]
+	[Produces("application/json")]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	public async Task<ActionResult<Guid>> CreateOffer([FromBody] CreateOfferDTO createOfferDto)
 	{
 		logger.LogInformation("");
 		try
 		{
+			if (!ModelState.IsValid)
+				return UnprocessableEntity(ModelState);
+			var offerEntity = mapper.Map<HotelOffer>(createOfferDto);
+			var offerId = await offerService.CreateAsync(offerEntity);
 
+			return CreatedAtRoute("name", new {offer = offerId},  offerId);
 		}
 		catch (Exception e)
 		{
@@ -62,4 +73,6 @@ public class OffersController : ControllerBase
 			return BadRequest(e.Message);
 		}
 	}
+
+
 }
