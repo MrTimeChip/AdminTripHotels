@@ -7,7 +7,7 @@ namespace AdminTripHotels.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class OffersController : IOfferController
+public class OffersController : ControllerBase
 {
 	private readonly IOfferService offerService;
 	private readonly IMapper mapper;
@@ -20,9 +20,9 @@ public class OffersController : IOfferController
 
 	[HttpGet]
 	[Route("hotels/{hotelCode}/offers")]
-	public Task<IActionResult> GetOffers([FromRoute] string hotelCode)
+	public async Task<IActionResult> GetOffers([FromRoute] string hotelCode)
 	{
-		var offers = offerService.GetFromHotelCode(hotelCode);
+		var offers = await offerService.GetFromHotelCode(hotelCode);
 		return offers is null ? NotFound() : Ok(mapper.Map<IEnumerable<OfferDTO>>(offers));
 	}
 }
