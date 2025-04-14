@@ -3,6 +3,7 @@ using AdminTripHotels.Core.Domain;
 using AdminTripHotels.Core.Services;
 using AdminTripHotels.WebApi.DTO;
 using AdminTripHotels.Core.Repositories;
+using AdminTripHotels.WebApi;
 using AdminTripHotels.WebApi.DTO.HotelInfo;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,30 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAutoMapper(config => { config.CreateMap<HotelOffer, OfferDTO>(); });
+builder.Services.AddAutoMapper(config =>
+{
+	config.CreateMap<HotelOffer, OfferDTO>();
+	config.CreateMap<HotelOffer, CreateOfferDTO>();
+	config.CreateMap<CreateOfferDTO, HotelOffer>()
+		.ForMember(dest => dest.OfferId, opt => opt.MapFrom(_ => Guid.NewGuid()))
+		.ForMember(dest => dest.Meal, opt => opt.MapFrom(src => new HotelMeal
+		{
+			Id = src.Meal.Id,
+			Name = src.Meal.Name,
+		}))
+		.ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => new HotelImage
+		{
+			Url = src.ImageUrl.Url,
+		}))
+		.ForMember(dest => dest.BigImageUrl, opt => opt.MapFrom(src => new HotelImage
+		{
+			Url = src.BigImageUrl.Url,
+		}))
+		.ForMember(dest => dest.ThumbnailUrl, opt => opt.MapFrom(src => new HotelImage
+		{
+			Url = src.ThumbnailUrl.Url,
+		}));
+});
 builder.Services.AddAutoMapper(config => { config.CreateMap<HotelInfo, HotelInfoDefaultDTO>(); });
 builder.Services.AddAutoMapper(config => { config.CreateMap<HotelInfo, HotelInfoGetAllDTO>(); });
 builder.Services.AddAutoMapper(config => { config.CreateMap<HotelInfoDefaultDTO, HotelInfo>(); });
