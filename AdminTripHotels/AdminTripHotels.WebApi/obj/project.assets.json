@@ -2,22 +2,6 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "AutoMapper/14.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Options": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/AutoMapper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/AutoMapper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.EntityFrameworkCore/9.0.4": {
         "type": "package",
         "dependencies": {
@@ -351,21 +335,6 @@
     }
   },
   "libraries": {
-    "AutoMapper/14.0.0": {
-      "sha512": "OC+1neAPM4oCCqQj3g2GJ2shziNNhOkxmNB9cVS8jtx4JbgmRzLcUOxB9Tsz6cVPHugdkHgCaCrTjjSI0Z5sCQ==",
-      "type": "package",
-      "path": "automapper/14.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "automapper.14.0.0.nupkg.sha512",
-        "automapper.nuspec",
-        "icon.png",
-        "lib/net8.0/AutoMapper.dll",
-        "lib/net8.0/AutoMapper.xml"
-      ]
-    },
     "Microsoft.EntityFrameworkCore/9.0.4": {
       "sha512": "+5IAX0aicQYCRfN4pAjad+JPwdEYoVEM3Z1Cl8/EiEv3FVHQHdd8TJQpQIslQDDQS/UsUMb0MsOXwqOh+TJtRw==",
       "type": "package",
@@ -1075,28 +1044,27 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "AdminTripHotels.Core >= 1.0.0",
-      "AutoMapper >= 14.0.0",
       "Swashbuckle.AspNetCore >= 8.1.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Дмитрий\\.nuget\\packages\\": {},
+    "C:\\Users\\alexx\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.WebApi\\AdminTripHotels.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.WebApi\\AdminTripHotels.WebApi.csproj",
       "projectName": "AdminTripHotels.WebApi",
-      "projectPath": "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.WebApi\\AdminTripHotels.WebApi.csproj",
-      "packagesPath": "C:\\Users\\Дмитрий\\.nuget\\packages\\",
-      "outputPath": "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.WebApi\\obj\\",
+      "projectPath": "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.WebApi\\AdminTripHotels.WebApi.csproj",
+      "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Дмитрий\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alexx\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1105,15 +1073,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj": {
-              "projectPath": "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj"
+            "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj": {
+              "projectPath": "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj"
             }
           }
         }
@@ -1133,10 +1100,6 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-          "AutoMapper": {
-            "target": "Package",
-            "version": "[14.0.0, )"
-          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[8.1.1, )"
@@ -1161,7 +1124,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
