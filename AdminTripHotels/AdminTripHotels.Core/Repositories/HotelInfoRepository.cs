@@ -47,7 +47,8 @@ public class HotelInfoRepository : IRepository<HotelInfo>
         await context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task DeleteAllAsync(Expression<Func<HotelInfo, bool>> predicate, CancellationToken cancellationToken = default)
+    public async Task DeleteAllAsync(Expression<Func<HotelInfo, bool>> predicate,
+        CancellationToken cancellationToken = default)
     {
         var itemsToDelete = await dbset.Where(predicate).ToListAsync(cancellationToken);
         dbset.RemoveRange(itemsToDelete);

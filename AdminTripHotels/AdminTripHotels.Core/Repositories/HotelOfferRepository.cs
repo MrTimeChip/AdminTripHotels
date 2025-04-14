@@ -23,28 +23,28 @@ public class HotelOfferRepository(AdminTripHotelsDbContext context) : IRepositor
         await dbSet.AddRangeAsync(entities, cancellationToken);
     }
 
-    public Task UpdateAsync(HotelOffer item, CancellationToken cancellationToken = default)
+    public async Task UpdateAsync(HotelOffer item, CancellationToken cancellationToken = default)
     {
         dbSet.Update(item);
-        return context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 
-    public Task DeleteAsync(HotelOffer item, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(HotelOffer item, CancellationToken cancellationToken = default)
     {
         dbSet.Remove(item);
-        return context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 
-    public Task DeleteAllAsync(IEnumerable<HotelOffer> items, CancellationToken cancellationToken = default)
+    public async Task DeleteAllAsync(IEnumerable<HotelOffer> items, CancellationToken cancellationToken = default)
     {
         dbSet.RemoveRange(items);
-        return context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 
-    public Task DeleteAllAsync(Expression<Func<HotelOffer, bool>> predicate,
+    public async Task DeleteAllAsync(Expression<Func<HotelOffer, bool>> predicate,
         CancellationToken cancellationToken = default)
     {
         dbSet.RemoveRange(dbSet.Where(predicate));
-        return context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 }
