@@ -86,9 +86,10 @@ public class OffersController : ControllerBase
 	[Produces("application/json")]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(StatusCodes.Status201Created)]
 	public async Task<ActionResult<Guid>> CreateOffer([FromBody] CreateOfferDTO createOfferDto)
 	{
-		logger.LogInformation("");
+		logger.LogInformation("Получение ");
 		try
 		{
 			if (!ModelState.IsValid)
@@ -105,5 +106,49 @@ public class OffersController : ControllerBase
 		}
 	}
 
+	[HttpDelete("hotels/{hotelCode}/offers/{offerId}")]
+	[Produces("application/json")]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(StatusCodes.Status201Created)]
+	public async Task<IActionResult> DeleteOffer([FromRoute] string hotelCode, [FromRoute] Guid offerId)
+	{
+		logger.LogInformation("Удаление предложения.");
+		try
+		{
+			if (!ModelState.IsValid)
+				return UnprocessableEntity(ModelState);
+			await offerService.DeleteAsync(hotelCode, offerId);
 
+			return Ok();
+		}
+		catch (Exception e)
+		{
+			logger.LogError(e.Message);
+			return BadRequest(e.Message);
+		}
+	}
+
+	[HttpPut("hotels/{hotelCode}/offers/{offerId}")]
+	[Produces("application/json")]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	public async Task<IActionResult> UpdateOffer([FromRoute] string hotelCode, [FromRoute] Guid offerId)
+	{
+		logger.LogInformation("Удаление предложения.");
+		try
+		{
+			if (!ModelState.IsValid)
+				return UnprocessableEntity(ModelState);
+			await offerService.DeleteAsync(hotelCode, offerId);
+
+			return Ok();
+		}
+		catch (Exception e)
+		{
+			logger.LogError(e.Message);
+			return BadRequest(e.Message);
+		}
+	}
 }

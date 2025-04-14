@@ -24,7 +24,7 @@ public class OfferService : IOfferService
 
 		if (hotel == null || hotel.Offers == null)
 			return null;
-		
+
 		var count = hotel.Offers.Count();
 
 		var offers = hotel.Offers
@@ -49,7 +49,6 @@ public class OfferService : IOfferService
 			TotalPrice = offer.TotalPrice
 		};
 	}
-	
 
 	public HotelOffer? GetHotelOfferById(string? hotelCode, Guid? id)
 	{
@@ -69,7 +68,14 @@ public class OfferService : IOfferService
 			.FirstOrDefault(x => x.OfferId == id);
 	}
 
-	public Task<Guid> CreateAsync(HotelOffer offerEntity)
+	public async Task<Guid> CreateAsync(HotelOffer offerEntity)
+	{
+		await hotelOfferRepository.AddAsync(offerEntity);
+
+		return offerEntity.OfferId;
+	}
+
+	public Task DeleteAsync(string hotelCode, Guid offerId)
 	{
 		throw new NotImplementedException();
 	}
