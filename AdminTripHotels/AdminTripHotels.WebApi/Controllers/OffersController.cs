@@ -3,6 +3,7 @@ using AdminTripHotels.Core.Services;
 using AdminTripHotels.WebApi.DTO;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace AdminTripHotels.WebApi.Controllers;
 
@@ -22,10 +23,35 @@ public class OffersController : ControllerBase
 	}
 
 	[HttpGet]
-	public IEnumerable<OfferDTO> GetOffers()
+	[Route("hotels/{hotelCode}/offers")]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<ActionResult<IEnumerable<OfferDTO>>> GetOffers([FromRoute]string hotelCode,
+		[FromQuery]int pageNumber = 1, [FromQuery]int pageSize = 3)
 	{
-		var offers = offerService.GetAll().ToList();
-		return mapper.Map<IEnumerable<OfferDTO>>(offers);
+		if (pageNumber < 1)
+			pageNumber = 1;
+
+		if (pageSize < 1)
+			pageSize = 1;
+
+		if (pageSize > 10)
+			pageSize = 10;
+		
+		var offers = await offerService.GetOffersByHotelCode(hotelCode, pageNumber, pageSize);
+		if (offers == null)
+			return NotFound();
+		
+		var paginationHeader = new
+		{
+			totalCount = offers.TotalCount,
+			pageSize,
+			currentPage = offers.CurrentPage,
+			totalPages = offers.TotalPages,
+		};
+		Response.Headers["X-Pagination"] = JsonConvert.SerializeObject(paginationHeader);
+		
+		return Ok(mapper.Map<IEnumerable<OfferDTO>>(offers));
 	}
 
 	[HttpGet("hotels/{hotelCode}/offers/{offerId}")]
@@ -38,7 +64,7 @@ public class OffersController : ControllerBase
 		logger.LogInformation($"Получение предложения по ID:{offerId} для отеля:{hotelCode}");
 		try
 		{
-			var offer = offerService.GetByHotelIdAndId(hotelCode, offerId);
+			var offer = offerService.GetHotelOfferById(hotelCode, offerId);
 			if (offer == null)
 				return NotFound();
 

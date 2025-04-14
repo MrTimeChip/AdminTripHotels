@@ -1,11 +1,11 @@
 using AdminTripHotels.Core.Domain;
+using AdminTripHotels.WebApi.Utils;
 
 namespace AdminTripHotels.Core.Services;
 
 public interface IOfferService
 {
-	public IEnumerable<HotelOffer> GetAll();
-
-	HotelOffer? GetByHotelIdAndId(string hotelCode, Guid? id);
+	Task<PageList<HotelOffer>> GetOffersByHotelCode(string hotelCode, int pageNumber, int pageSize);
+	HotelOffer? GetHotelOfferById(string hotelCode, Guid? id);
 	Task<Guid> CreateAsync(HotelOffer offerEntity);
 }
