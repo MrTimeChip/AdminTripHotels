@@ -39,4 +39,9 @@ public class OfferService : IOfferService
 		return hotelOfferRepository.GetAll()
 			.FirstOrDefault(x => x.OfferId == id);
 	}
+
+	public Task<Guid> CreateAsync(HotelOffer offerEntity)
+	{
+		throw new NotImplementedException();
+	}
 }
