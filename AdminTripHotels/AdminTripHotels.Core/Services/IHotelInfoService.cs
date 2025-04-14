@@ -1,5 +1,5 @@
 using AdminTripHotels.Core.Domain;
-using AdminTripHotels.WebApi.Utils;
+using AdminTripHotels.Core.Utils;
 
 namespace AdminTripHotels.Core.Services;
 

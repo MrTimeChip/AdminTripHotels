@@ -28,32 +28,6 @@ namespace AdminTripHotels.Tests.Services
         }
 
         [Test]
-        public void GetAll_WhenCalled_ReturnsAllHotelOffers()
-        {
-            var expectedOffers = new List<HotelOffer>
-            {
-                new()
-                {
-                    OfferId = Guid.NewGuid(),
-                    Title = "FirstTitle"
-                },
-                new()
-                {
-                    OfferId = Guid.NewGuid(),
-                    Title = "SecondTitle"
-                }
-            }.AsQueryable();
-            
-            _mockHotelOfferRepository.Setup(x => x.GetAll())
-                .Returns(expectedOffers);
-
-            var result = _offerService.GetAll();
-
-            result.Should().BeEquivalentTo(expectedOffers);
-            _mockHotelOfferRepository.Verify(x => x.GetAll(), Times.Once);
-        }
-
-        [Test]
         public void GetByHotelIdAndId_WithValidParameters_ReturnsCorrectOffer()
         {
             var hotelCode = "TEST123";
@@ -77,7 +51,7 @@ namespace AdminTripHotels.Tests.Services
             _mockHotelOfferRepository.Setup(x => x.GetAll())
                 .Returns(new List<HotelOffer> { expectedOffer }.AsQueryable());
 
-            var result = _offerService.GetByHotelIdAndId(hotelCode, offerId);
+            var result = _offerService.GetHotelOfferById(hotelCode, offerId);
 
             result.Should().BeEquivalentTo(expectedOffer);
             _mockHotelInfoRepository.Verify(x => x.GetAll(), Times.Once);
@@ -90,7 +64,7 @@ namespace AdminTripHotels.Tests.Services
             string hotelCode = null;
             var offerId = Guid.NewGuid();
 
-            Action act = () => _offerService.GetByHotelIdAndId(hotelCode, offerId);
+            Action act = () => _offerService.GetHotelOfferById(hotelCode, offerId);
 
             act.Should().Throw<ArgumentNullException>()
                 .WithParameterName("hotelCode");
@@ -102,7 +76,7 @@ namespace AdminTripHotels.Tests.Services
             var hotelCode = string.Empty;
             var offerId = Guid.NewGuid();
 
-            Action act = () => _offerService.GetByHotelIdAndId(hotelCode, offerId);
+            Action act = () => _offerService.GetHotelOfferById(hotelCode, offerId);
 
             act.Should().Throw<ArgumentNullException>()
                 .WithParameterName("hotelCode");
@@ -117,7 +91,7 @@ namespace AdminTripHotels.Tests.Services
             _mockHotelInfoRepository.Setup(x => x.GetAll())
                 .Returns(Enumerable.Empty<HotelInfo>().AsQueryable());
 
-            Action act = () => _offerService.GetByHotelIdAndId(hotelCode, offerId);
+            Action act = () => _offerService.GetHotelOfferById(hotelCode, offerId);
 
             act.Should().Throw<ArgumentNullException>()
                 .WithParameterName("hotelInfo");
@@ -139,7 +113,7 @@ namespace AdminTripHotels.Tests.Services
             _mockHotelInfoRepository.Setup(x => x.GetAll())
                 .Returns(new List<HotelInfo> { hotelInfo }.AsQueryable());
 
-            Action act = () => _offerService.GetByHotelIdAndId(hotelCode, offerId);
+            Action act = () => _offerService.GetHotelOfferById(hotelCode, offerId);
 
             act.Should().Throw<ArgumentNullException>()
                 .WithParameterName("id");
@@ -164,7 +138,7 @@ namespace AdminTripHotels.Tests.Services
             _mockHotelOfferRepository.Setup(x => x.GetAll())
                 .Returns(Enumerable.Empty<HotelOffer>().AsQueryable());
 
-            var result = _offerService.GetByHotelIdAndId(hotelCode, offerId);
+            var result = _offerService.GetHotelOfferById(hotelCode, offerId);
 
             result.Should().BeNull();
         }
