@@ -29,6 +29,7 @@ public class OffersController : ControllerBase
 	public async Task<ActionResult<IEnumerable<OfferDTO>>> GetOffers([FromRoute]string hotelCode,
 		[FromQuery]int pageNumber = 1, [FromQuery]int pageSize = 3)
 	{
+		logger.LogInformation($"Получение всех предложений по отелю {hotelCode}");
 		if (pageNumber < 1)
 			pageNumber = 1;
 
@@ -40,7 +41,11 @@ public class OffersController : ControllerBase
 		
 		var offers = await offerService.GetOffersByHotelCode(hotelCode, pageNumber, pageSize);
 		if (offers == null)
+		{
+			logger.LogError($"Не найден отель {hotelCode} или у отеля нет предложений");
 			return NotFound();
+		}
+			
 		
 		var paginationHeader = new
 		{
