@@ -5,7 +5,6 @@ using AdminTripHotels.Core;
 
 namespace AdminTripHotels.Tests.Repositories;
 
-[Parallelizable]
 public class HotelInfoRepositoryTests
 {
     private AdminTripHotelsDbContext context;

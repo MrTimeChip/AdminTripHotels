@@ -1,7 +1,7 @@
 using AdminTripHotels.Core.Domain;
 using AdminTripHotels.Core.Services;
+using AdminTripHotels.Core.Utils;
 using AdminTripHotels.WebApi.DTO.HotelInfo;
-using AdminTripHotels.WebApi.Utils;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 

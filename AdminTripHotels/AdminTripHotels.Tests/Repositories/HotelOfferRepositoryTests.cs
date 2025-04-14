@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AdminTripHotels.Tests.Repositories;
 
+[Parallelizable]
 public class HotelOfferRepositoryTests
 {
     private AdminTripHotelsDbContext context;

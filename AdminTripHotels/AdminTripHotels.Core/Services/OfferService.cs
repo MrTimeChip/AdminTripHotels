@@ -1,6 +1,6 @@
 using AdminTripHotels.Core.Domain;
 using AdminTripHotels.Core.Repositories;
-using AdminTripHotels.WebApi.Utils;
+using AdminTripHotels.Core.Utils;
 using Microsoft.Extensions.Logging;
 
 namespace AdminTripHotels.Core.Services;

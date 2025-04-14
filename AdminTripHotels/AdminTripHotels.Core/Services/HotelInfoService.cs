@@ -1,6 +1,6 @@
 using AdminTripHotels.Core.Domain;
 using AdminTripHotels.Core.Repositories;
-using AdminTripHotels.WebApi.Utils;
+using AdminTripHotels.Core.Utils;
 
 namespace AdminTripHotels.Core.Services;
 

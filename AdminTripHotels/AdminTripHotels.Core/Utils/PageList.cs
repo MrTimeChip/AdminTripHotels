@@ -1,4 +1,4 @@
-namespace AdminTripHotels.WebApi.Utils;
+namespace AdminTripHotels.Core.Utils;
 
 public class PageList<T> : List<T>
 {

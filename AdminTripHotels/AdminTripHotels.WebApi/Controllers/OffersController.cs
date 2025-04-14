@@ -99,6 +99,4 @@ public class OffersController : ControllerBase
 			return BadRequest(e.Message);
 		}
 	}
-
-
 }
