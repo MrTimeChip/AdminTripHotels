@@ -19,10 +19,10 @@ public class OfferService : IOfferService
 
 	public async Task<IEnumerable<HotelOffer>> GetOffersByHotelCode(string hotelCode)
 	{
+		var hotelInfos = hotelInfoRepository.GetAll();
 		return await Task.FromResult(hotelInfoRepository.GetAll()
-			.FirstOrDefault(h => h.Code == hotelCode).Offers);
+			.FirstOrDefault(h => h.Code == hotelCode)?.Offers ?? Array.Empty<HotelOffer>());
 	}
-	
 
 	public HotelOffer? GetHotelOfferById(string? hotelCode, Guid? id)
 	{
@@ -42,7 +42,14 @@ public class OfferService : IOfferService
 			.FirstOrDefault(x => x.OfferId == id);
 	}
 
-	public Task<Guid> CreateAsync(HotelOffer offerEntity)
+	public async Task<Guid> CreateAsync(HotelOffer offerEntity)
+	{
+		await hotelOfferRepository.AddAsync(offerEntity);
+
+		return offerEntity.OfferId;
+	}
+
+	public Task DeleteAsync(string hotelCode, Guid offerId)
 	{
 		throw new NotImplementedException();
 	}

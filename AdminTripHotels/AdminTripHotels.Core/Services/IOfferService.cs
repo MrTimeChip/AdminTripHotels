@@ -7,4 +7,5 @@ public interface IOfferService
 	Task<IEnumerable<HotelOffer>> GetOffersByHotelCode(string hotelCode);
 	HotelOffer? GetHotelOfferById(string hotelCode, Guid? id);
 	Task<Guid> CreateAsync(HotelOffer offerEntity);
+	Task DeleteAsync(string hotelCode, Guid offerId);
 }
