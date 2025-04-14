@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="14.0.0" />
         <PackageReference Include="FluentAssertions" Version="8.2.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
         <PackageReference Include="Moq" Version="4.20.72" />
@@ -21,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AdminTripHotels.Core\AdminTripHotels.Core.csproj" />
+      <ProjectReference Include="..\AdminTripHotels.WebApi\AdminTripHotels.WebApi.csproj" />
     </ItemGroup>
 
 </Project>
