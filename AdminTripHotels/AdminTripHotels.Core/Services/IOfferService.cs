@@ -5,4 +5,6 @@ namespace AdminTripHotels.Core.Services;
 public interface IOfferService
 {
 	public IEnumerable<HotelOffer> GetAll();
+
+	HotelOffer? GetByHotelIdAndId(string hotelCode, Guid? id);
 }

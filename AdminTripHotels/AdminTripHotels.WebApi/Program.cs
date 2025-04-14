@@ -5,7 +5,8 @@ using AdminTripHotels.WebApi.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 builder.Services.AddAdminTripHotelsCore();
 builder.Services.AddScoped<IOfferService, OfferService>();
 
