@@ -15,10 +15,8 @@ public class AdminTripHotelsDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<HotelInfo>()
-            .HasKey(x => x.Code);
-        builder.Entity<HotelOffer>()
-            .HasKey(x => x.OfferId);
+        AdminTripHotelsDbContextConfig.ConfigureHotelInfo(builder);
+        AdminTripHotelsDbContextConfig.ConfigureHotelOffer(builder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
