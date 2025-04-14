@@ -1592,24 +1592,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\liyasov\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\leont\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\work\\Shpora\\hackathon\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Tests\\AdminTripHotels.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\leont\\source\\repos\\Shpora2024\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Tests\\AdminTripHotels.Tests.csproj",
       "projectName": "AdminTripHotels.Tests",
-      "projectPath": "C:\\work\\Shpora\\hackathon\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Tests\\AdminTripHotels.Tests.csproj",
-      "packagesPath": "C:\\Users\\liyasov\\.nuget\\packages\\",
-      "outputPath": "C:\\work\\Shpora\\hackathon\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Tests\\obj\\",
+      "projectPath": "C:\\Users\\leont\\source\\repos\\Shpora2024\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Tests\\AdminTripHotels.Tests.csproj",
+      "packagesPath": "C:\\Users\\leont\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\leont\\source\\repos\\Shpora2024\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Tests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\liyasov\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\leont\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1629,13 +1624,7 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -1678,7 +1667,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

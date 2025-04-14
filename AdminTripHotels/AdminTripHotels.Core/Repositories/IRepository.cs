@@ -9,7 +9,7 @@ namespace AdminTripHotels.Core.Repositories;
 public interface IRepository<TEntity> where TEntity : class
 {
     /// <summary>
-    ///     Получение всех сущностей их хранилища
+    ///     Получение всех сущностей из хранилища
     /// </summary>
     /// <returns>Все сущности в хранилище</returns>
     IQueryable<TEntity> GetAll();
