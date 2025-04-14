@@ -31,7 +31,6 @@ namespace AdminTripHotels.Tests.Controllers
         [Test]
         public async Task GetOffers_WithValidParameters_ReturnsOkResultWithPagination()
         {
-            // Arrange
             var hotelCode = "TEST123";
             var pageNumber = 1;
             var pageSize = 3;
@@ -68,10 +67,8 @@ namespace AdminTripHotels.Tests.Controllers
             _mockMapper.Setup(x => x.Map<IEnumerable<OfferDTO>>(pagedOffers))
                 .Returns(expectedDtos);
 
-            // Act
             var result = await _controller.GetOffers(hotelCode, pageNumber, pageSize);
 
-            // Assert
             result.Should().BeOfType<OkObjectResult>();
             var okResult = result;
             okResult.Value.Should().BeEquivalentTo(expectedDtos);
@@ -89,7 +86,6 @@ namespace AdminTripHotels.Tests.Controllers
         [Test]
         public async Task GetOffers_WithInvalidPageNumber_AdjustsToFirstPage()
         {
-            // Arrange
             var hotelCode = "TEST123";
             var invalidPageNumber = 0;
             var expectedPageNumber = 1;
@@ -101,10 +97,8 @@ namespace AdminTripHotels.Tests.Controllers
             _mockOfferService.Setup(x => x.GetOffersByHotelCode(hotelCode, expectedPageNumber, pageSize))
                 .ReturnsAsync(pagedOffers);
 
-            // Act
             await _controller.GetOffers(hotelCode, invalidPageNumber, pageSize);
 
-            // Assert
             _mockOfferService.Verify(x => 
                 x.GetOffersByHotelCode(hotelCode, expectedPageNumber, pageSize), Times.Once);
         }
@@ -112,7 +106,6 @@ namespace AdminTripHotels.Tests.Controllers
         [Test]
         public async Task GetOffers_WithInvalidPageSize_AdjustsWithinLimits()
         {
-            // Arrange
             var hotelCode = "TEST123";
             var pageNumber = 1;
             var invalidPageSize = 20;
@@ -124,10 +117,8 @@ namespace AdminTripHotels.Tests.Controllers
             _mockOfferService.Setup(x => x.GetOffersByHotelCode(hotelCode, pageNumber, expectedPageSize))
                 .ReturnsAsync(pagedOffers);
 
-            // Act
             await _controller.GetOffers(hotelCode, pageNumber, invalidPageSize);
 
-            // Assert
             _mockOfferService.Verify(x => 
                 x.GetOffersByHotelCode(hotelCode, pageNumber, expectedPageSize), Times.Once);
         }
@@ -135,23 +126,19 @@ namespace AdminTripHotels.Tests.Controllers
         [Test]
         public async Task GetOffers_WithNoOffers_ReturnsNotFound()
         {
-            // Arrange
             var hotelCode = "TEST123";
             
             _mockOfferService.Setup(x => x.GetOffersByHotelCode(hotelCode, It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync((PageList<HotelOffer>)null);
 
-            // Act
             var result = await _controller.GetOffers(hotelCode);
 
-            // Assert
             result.Should().BeOfType<NotFoundResult>();
         }
 
         [Test]
         public void GetOfferByHotelIdAndId_WithValidParameters_ReturnsOkResult()
         {
-            // Arrange
             var hotelCode = "TEST123";
             var offerId = Guid.NewGuid();
             var offer = new HotelOffer
@@ -171,10 +158,8 @@ namespace AdminTripHotels.Tests.Controllers
             _mockMapper.Setup(x => x.Map<OfferDTO>(offer))
                 .Returns(expectedDto);
 
-            // Act
             var result = _controller.GetOfferByHotelIdAndId(hotelCode, offerId);
 
-            // Assert
             result.Should().BeOfType<OkObjectResult>();
             var okResult = result as OkObjectResult;
             okResult.Value.Should().BeEquivalentTo(expectedDto);
@@ -183,24 +168,20 @@ namespace AdminTripHotels.Tests.Controllers
         [Test]
         public void GetOfferByHotelIdAndId_WithNonExistingOffer_ReturnsNotFound()
         {
-            // Arrange
             var hotelCode = "TEST123";
             var offerId = Guid.NewGuid();
             
             _mockOfferService.Setup(x => x.GetHotelOfferById(hotelCode, offerId))
                 .Returns((HotelOffer)null);
 
-            // Act
             var result = _controller.GetOfferByHotelIdAndId(hotelCode, offerId);
 
-            // Assert
             result.Should().BeOfType<NotFoundResult>();
         }
 
         [Test]
         public void GetOfferByHotelIdAndId_WhenServiceThrowsException_ReturnsBadRequest()
         {
-            // Arrange
             var hotelCode = "TEST123";
             var offerId = Guid.NewGuid();
             var exceptionMessage = "Test exception";
@@ -208,10 +189,8 @@ namespace AdminTripHotels.Tests.Controllers
             _mockOfferService.Setup(x => x.GetHotelOfferById(hotelCode, offerId))
                 .Throws(new Exception(exceptionMessage));
 
-            // Act
             var result = _controller.GetOfferByHotelIdAndId(hotelCode, offerId);
 
-            // Assert
             result.Should().BeOfType<BadRequestObjectResult>();
             var badRequestResult = result as BadRequestObjectResult;
             badRequestResult.Value.Should().Be(exceptionMessage);
@@ -224,7 +203,6 @@ namespace AdminTripHotels.Tests.Controllers
         [Test]
         public async Task CreateOffer_WithValidModel_ReturnsCreatedResult()
         {
-            // Arrange
             var createOfferDto = new CreateOfferDTO
             {
                 Title = null
@@ -242,10 +220,8 @@ namespace AdminTripHotels.Tests.Controllers
             _mockOfferService.Setup(x => x.CreateAsync(offerEntity))
                 .ReturnsAsync(expectedId);
 
-            // Act
             var result = await _controller.CreateOffer(createOfferDto);
 
-            // Assert
             result.Should().BeOfType<CreatedAtActionResult>();
             var createdAtResult = result;
             createdAtResult.Value.Should().Be(expectedId);
@@ -254,24 +230,20 @@ namespace AdminTripHotels.Tests.Controllers
         [Test]
         public async Task CreateOffer_WithInvalidModel_ReturnsUnprocessableEntity()
         {
-            // Arrange
             var createOfferDto = new CreateOfferDTO
             {
                 Title = null
             };
             _controller.ModelState.AddModelError("Test", "Test error");
 
-            // Act
             var result = await _controller.CreateOffer(createOfferDto);
 
-            // Assert
             result.Should().BeOfType<UnprocessableEntityObjectResult>();
         }
 
         [Test]
         public async Task CreateOffer_WhenServiceThrowsException_ReturnsBadRequest()
         {
-            // Arrange
             var createOfferDto = new CreateOfferDTO
             {
                 Title = null
@@ -287,10 +259,8 @@ namespace AdminTripHotels.Tests.Controllers
             _mockOfferService.Setup(x => x.CreateAsync(It.IsAny<HotelOffer>()))
                 .ThrowsAsync(new Exception(exceptionMessage));
 
-            // Act
             var result = await _controller.CreateOffer(createOfferDto);
 
-            // Assert
             result.Should().BeOfType<BadRequestObjectResult>();
             var badRequestResult = result;
             badRequestResult.Value.Should().Be(exceptionMessage);
