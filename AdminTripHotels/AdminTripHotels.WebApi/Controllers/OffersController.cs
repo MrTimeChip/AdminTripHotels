@@ -48,4 +48,18 @@ public class OffersController : ControllerBase
 			return BadRequest(e.Message);
 		}
 	}
+
+	public IActionResult CreateOffer([FromBody] CreateOfferDTO offer)
+	{
+		logger.LogInformation("");
+		try
+		{
+
+		}
+		catch (Exception e)
+		{
+			logger.LogError(e.Message);
+			return BadRequest(e.Message);
+		}
+	}
 }
