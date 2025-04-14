@@ -11,11 +11,12 @@ public class AdminTripHotelsDbContext : DbContext
     }
 
     public DbSet<HotelInfo> SearchResultItems { get; set; }
+    public DbSet<HotelOffer> SearchHotelOffers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<HotelInfo>()
-            .HasKey(x => x.Code);
+        AdminTripHotelsDbContextConfig.ConfigureHotelInfo(builder);
+        AdminTripHotelsDbContextConfig.ConfigureHotelOffer(builder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

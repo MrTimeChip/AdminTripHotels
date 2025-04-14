@@ -3,7 +3,7 @@
 /// <summary>
 /// Завтрак в отеле
 /// </summary>
-public struct HotelMeal
+public struct  HotelMeal
 {
     /// <summary>
     /// ИД
