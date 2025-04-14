@@ -616,23 +616,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Дмитрий\\.nuget\\packages\\": {},
+    "C:\\Users\\alexx\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj",
+      "projectUniqueName": "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj",
       "projectName": "AdminTripHotels.Core",
-      "projectPath": "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj",
-      "packagesPath": "C:\\Users\\Дмитрий\\.nuget\\packages\\",
-      "outputPath": "D:\\kontur\\hackaton\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\obj\\",
+      "projectPath": "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\AdminTripHotels.Core.csproj",
+      "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alexx\\source\\repos\\Kontur\\AdminTripHotels\\AdminTripHotels\\AdminTripHotels.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Дмитрий\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alexx\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -641,7 +641,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -690,7 +689,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
