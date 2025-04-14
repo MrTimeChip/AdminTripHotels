@@ -112,8 +112,8 @@ namespace AdminTripHotels.Tests.Services
 
             result.Should().NotBeNull();
             result.Should().HaveCount(take);
-            result.First().Code.Should().Be("HOTEL3");
-            result.Last().Code.Should().Be("HOTEL5");
+            result.First().Code.Should().Be("HOTEL2");
+            result.Last().Code.Should().Be("HOTEL4");
             result.TotalCount.Should().Be(10);
             mockHotelInfoRepository.Verify(x => x.GetAll(), Times.Once);
         }

@@ -3,11 +3,11 @@ using AdminTripHotels.Core.Services;
 using AdminTripHotels.WebApi.Controllers;
 using AdminTripHotels.WebApi.DTO;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Newtonsoft.Json;
 using AdminTripHotels.Core.Utils;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AdminTripHotels.Tests.Controllers
 {
