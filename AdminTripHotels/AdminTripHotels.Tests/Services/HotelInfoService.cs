@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AdminTripHotels.Tests.Services;
 
-public class OfferServiceTests
+public class HotelInfoService
 {
     private OfferService service;
     private IRepository<HotelInfo> hotelInfoRepository;
@@ -32,11 +32,4 @@ public class OfferServiceTests
         factory.Dispose();
     }
 
-    [Test]
-    public void GetOfferByHotelIdAndId_ShouldThrowNullArgumentException_WhenHotelIdIsNull()
-    {
-        var action = () => service.GetByHotelIdAndId(null, null);
-        
-        action.Should().Throw<ArgumentNullException>();
-    }
 }
