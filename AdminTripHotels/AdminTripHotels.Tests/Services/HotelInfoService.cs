@@ -9,6 +9,8 @@ namespace AdminTripHotels.Tests.Services
     public class HotelInfoServiceTests
     {
         private Mock<IRepository<HotelInfo>> mockHotelInfoRepository;
+        private Mock<IRepository<HotelOffer>>mockHotelOfferRepository;
+        private Mock<IOfferService> mockHotelOfferService;
         private HotelInfoService hotelInfoService;
         private CancellationToken cancellationToken;
 
@@ -16,7 +18,9 @@ namespace AdminTripHotels.Tests.Services
         public void Setup()
         {
             mockHotelInfoRepository = new Mock<IRepository<HotelInfo>>();
-            hotelInfoService = new HotelInfoService(mockHotelInfoRepository.Object);
+            mockHotelOfferRepository = new Mock<IRepository<HotelOffer>>();
+            mockHotelOfferService = new Mock<IOfferService>();
+            hotelInfoService = new HotelInfoService(mockHotelInfoRepository.Object, mockHotelOfferService.Object, mockHotelOfferRepository.Object);
             cancellationToken = new CancellationToken();
         }
 
