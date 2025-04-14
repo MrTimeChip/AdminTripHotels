@@ -4,8 +4,7 @@ namespace AdminTripHotels.Core.Services;
 
 public interface IOfferService
 {
-	public IEnumerable<HotelOffer> GetAll();
-
-	HotelOffer? GetByHotelIdAndId(string hotelCode, Guid? id);
+	Task<IEnumerable<HotelOffer>> GetOffersByHotelCode(string hotelCode);
+	HotelOffer? GetHotelOfferById(string hotelCode, Guid? id);
 	Task<Guid> CreateAsync(HotelOffer offerEntity);
 }

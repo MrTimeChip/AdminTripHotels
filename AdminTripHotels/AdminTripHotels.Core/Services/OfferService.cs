@@ -22,6 +22,7 @@ public class OfferService : IOfferService
 		return await Task.FromResult(hotelInfoRepository.GetAll()
 			.FirstOrDefault(h => h.Code == hotelCode).Offers);
 	}
+	
 
 	public HotelOffer? GetHotelOfferById(string? hotelCode, Guid? id)
 	{
