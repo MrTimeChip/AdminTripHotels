@@ -23,6 +23,10 @@ public class OffersController : ControllerBase
 	public async Task<IActionResult> GetOffers([FromRoute] string hotelCode)
 	{
 		var offers = await offerService.GetFromHotelCode(hotelCode);
-		return offers is null ? NotFound() : Ok(mapper.Map<IEnumerable<OfferDTO>>(offers));
+		if (offers is null)
+			return NotFound();
+		return Ok(mapper.Map<IEnumerable<OfferDTO>>(offers));
+
+
 	}
 }
