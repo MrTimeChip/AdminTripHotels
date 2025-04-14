@@ -21,10 +21,15 @@ public class OffersController : ControllerBase
 	}
 
 	[HttpGet]
-	public IEnumerable<OfferDTO> GetOffers()
+	[Route("hotels/{hotelCode}/offers")]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<ActionResult<IEnumerable<OfferDTO>>> GetOffers([FromRoute]string hotelCode)
 	{
-		var offers = offerService.GetAll().ToList();
-		return mapper.Map<IEnumerable<OfferDTO>>(offers);
+		var offers = await offerService.GetOffersByHotelCode(hotelCode);
+		if (offers == null)
+			return NotFound();
+		return Ok(mapper.Map<IEnumerable<OfferDTO>>(offers));
 	}
 
 	[HttpGet("hotels/{hotelCode}/offers/{offerId}")]
@@ -36,7 +41,7 @@ public class OffersController : ControllerBase
 		logger.LogInformation($"Получение предложения по ID:{offerId} для отеля:{hotelCode}");
 		try
 		{
-			var offer = offerService.GetByHotelIdAndId(hotelCode, offerId);
+			var offer = offerService.GetHotelOfferById(hotelCode, offerId);
 			if (offer == null)
 				return NotFound();
 

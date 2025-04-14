@@ -17,12 +17,13 @@ public class OfferService : IOfferService
 		this.logger = logger;
 	}
 
-	public IEnumerable<HotelOffer> GetAll()
+	public async Task<IEnumerable<HotelOffer>> GetOffersByHotelCode(string hotelCode)
 	{
-		return hotelOfferRepository.GetAll();
+		return await Task.FromResult(hotelInfoRepository.GetAll()
+			.FirstOrDefault(h => h.Code == hotelCode).Offers);
 	}
 
-	public HotelOffer? GetByHotelIdAndId(string? hotelCode, Guid? id)
+	public HotelOffer? GetHotelOfferById(string? hotelCode, Guid? id)
 	{
 		if(string.IsNullOrEmpty(hotelCode))
 			throw new ArgumentNullException(nameof(hotelCode));
