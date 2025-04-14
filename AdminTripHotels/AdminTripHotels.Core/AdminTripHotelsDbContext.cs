@@ -17,6 +17,8 @@ public class AdminTripHotelsDbContext : DbContext
     {
         builder.Entity<HotelInfo>()
             .HasKey(x => x.Code);
+
+        builder.Entity<HotelOffer>().HasKey(x => x.OfferId);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

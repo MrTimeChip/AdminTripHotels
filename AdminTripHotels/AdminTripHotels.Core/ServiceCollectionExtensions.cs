@@ -1,3 +1,4 @@
+using AdminTripHotels.Core.Domain;
 using AdminTripHotels.Core.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +10,9 @@ public static class ServiceCollectionExtensions
 	{
 		//Сюда добавлять сервисы
 		//services.AddSingleton<>();
+		services.AddDbContext<AdminTripHotelsDbContext>();
+		services.AddScoped<IRepository<HotelOffer>, HotelOfferRepository>();
+		services.AddScoped<IRepository<HotelInfo>, HotelInfoRepository>();
 		return services;
 	}
 }
