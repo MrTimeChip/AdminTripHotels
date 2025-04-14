@@ -75,8 +75,9 @@ public class OfferService : IOfferService
 		return offerEntity.OfferId;
 	}
 
-	public Task DeleteAsync(string hotelCode, Guid offerId)
+	public async Task DeleteAsync(string hotelCode, Guid offerId)
 	{
-		throw new NotImplementedException();
+		var offer = GetHotelOfferById(hotelCode, offerId);
+		await hotelOfferRepository.DeleteAsync(offer);
 	}
 }

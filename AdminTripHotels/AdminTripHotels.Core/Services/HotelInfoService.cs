@@ -4,13 +4,16 @@ using AdminTripHotels.WebApi.Utils;
 
 namespace AdminTripHotels.Core.Services;
 
-public class HotelInfoService(IRepository<HotelInfo> hotelInfoRepository) : IHotelInfoService
+public class HotelInfoService(IRepository<HotelInfo> hotelInfoRepository, IOfferService hotelOfferService, IRepository<HotelOffer> hotelOfferRepository)
+    : IHotelInfoService
 {
     public HotelInfo GetByCode(string code)
     {
         var hotel = hotelInfoRepository
             .GetAll()
             .First(h => h.Code == code);
+        var offers = hotelOfferService.GetOffersByHotelCode(hotel.Code, 1, 10);
+        hotel.Offers = offers.Result;
         return hotel;
     }
 
@@ -25,6 +28,7 @@ public class HotelInfoService(IRepository<HotelInfo> hotelInfoRepository) : IHot
         var allHotels = hotelInfoRepository.GetAll();
         var totalCount = allHotels.Count();
         var hotels = allHotels
+            .OrderBy(h => h.Code)
             .Skip(skip)
             .Take(take)
             .ToList();
@@ -34,6 +38,9 @@ public class HotelInfoService(IRepository<HotelInfo> hotelInfoRepository) : IHot
 
     public void Add(HotelInfo hotelInfo)
     {
+        var offers = hotelInfo.Offers;
+        if (offers != null)
+            hotelOfferRepository.AddAllAsync(offers);
         hotelInfoRepository.AddAsync(hotelInfo);
     }
 

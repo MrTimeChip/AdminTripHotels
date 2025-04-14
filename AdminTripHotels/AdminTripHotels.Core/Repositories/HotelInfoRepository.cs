@@ -15,7 +15,7 @@ public class HotelInfoRepository : IRepository<HotelInfo>
         dbset = context.SearchResultItems;
     }
 
-    public IQueryable<HotelInfo> GetAll() => dbset.AsQueryable();
+    public IQueryable<HotelInfo> GetAll() => dbset.AsQueryable().Include(hotel => hotel.Offers);
 
     public async Task AddAsync(HotelInfo item, CancellationToken cancellationToken = default)
     {

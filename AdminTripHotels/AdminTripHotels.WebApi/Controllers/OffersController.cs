@@ -51,7 +51,7 @@ public class OffersController : ControllerBase
 		};
 		Response.Headers["X-Pagination"] = JsonConvert.SerializeObject(paginationHeader);
 		
-		return Ok(mapper.Map<IEnumerable<OfferDTO>>(offers));
+		return Ok(mapper.Map<IEnumerable<OfferDTO>>(offers as IEnumerable<HotelOffer>));
 	}
 
 	[HttpGet("hotels/{hotelCode}/offers/{offerId}")]
