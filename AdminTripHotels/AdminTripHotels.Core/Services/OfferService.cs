@@ -1,5 +1,6 @@
 using AdminTripHotels.Core.Domain;
 using AdminTripHotels.Core.Repositories;
+using AdminTripHotels.WebApi.Utils;
 using Microsoft.Extensions.Logging;
 
 namespace AdminTripHotels.Core.Services;
@@ -17,11 +18,36 @@ public class OfferService : IOfferService
 		this.logger = logger;
 	}
 
-	public async Task<IEnumerable<HotelOffer>> GetOffersByHotelCode(string hotelCode)
+	public async Task<PageList<HotelOffer>> GetOffersByHotelCode(string hotelCode, int pageNumber, int pageSize)
 	{
-		var hotelInfos = hotelInfoRepository.GetAll();
-		return await Task.FromResult(hotelInfoRepository.GetAll()
-			.FirstOrDefault(h => h.Code == hotelCode)?.Offers ?? Array.Empty<HotelOffer>());
+		var hotel = hotelInfoRepository.GetAll().FirstOrDefault(h => h.Code == hotelCode);
+
+		if (hotel == null || hotel.Offers == null)
+			return null;
+
+		var count = hotel.Offers.Count();
+
+		var offers = hotel.Offers
+			.OrderBy(o => o.OfferId)
+			.Skip((pageNumber - 1) * pageSize)
+			.Take(pageSize)
+			.Select(o => Clone(o.OfferId, o))
+			.ToList();
+
+		return await Task.FromResult(
+			new PageList<HotelOffer>(offers, count, pageNumber, pageSize)
+		);
+	}
+
+	public HotelOffer Clone(Guid id, HotelOffer offer)
+	{
+		return new HotelOffer
+		{
+			OfferId = id, Title = offer.Title, Description = offer.Description,
+			Meal = offer.Meal, ExtraBeds = offer.ExtraBeds, ImageUrl = offer.ImageUrl,
+			ThumbnailUrl = offer.ThumbnailUrl, BigImageUrl = offer.BigImageUrl, RoomsRemained = offer.RoomsRemained,
+			TotalPrice = offer.TotalPrice
+		};
 	}
 
 	public HotelOffer? GetHotelOfferById(string? hotelCode, Guid? id)
